@@ -21,7 +21,7 @@ DB_URL=localhost:27017/<database> npm start
 ### Tests
 ```bash
 # antes subir o backend com DB_URL=<mongo url para tests> npm run prod
-npm test
+API_URL=http://localhost:4000 npm test
 ```
 
 ### Heroku
