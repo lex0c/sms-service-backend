@@ -1,0 +1,44 @@
+version: '3.7'
+networks:
+  db:
+  web:
+services:
+  database:
+    image: mongo:4.2
+    restart: always
+    container_name: database
+    volumes:
+      - /home/leo/Workspace/volumes/mongodb/db:/data/db
+    networks:
+      - db
+  api:
+    build:
+      context: .
+    container_name: api
+    volumes:
+      - .:/var/www/api
+    working_dir: /var/www/api
+    command: bash -c "chmod +x /var/www/api/start.sh && /var/www/api/start.sh"
+    environment:
+      - DB_URL=database/dbapp
+    networks:
+      - db
+      - web
+    links:
+      - database
+    depends_on:
+      - database
+  backserver:
+    image: nginx:1.16.1
+    container_name: backserver
+    volumes:
+      - /home/leo/Workspace/volumes/nginx/html:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    ports:
+      - 4000:4000
+    links:
+      - api
+    depends_on:
+      - api
