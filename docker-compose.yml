@@ -20,7 +20,7 @@ services:
     working_dir: /var/www/api
     command: bash -c "chmod +x /var/www/api/start.sh && /var/www/api/start.sh"
     environment:
-      - DB_URL=database/dbapp
+      - DB_URL=mongodb://database:27017/dbapp
     networks:
       - db
       - web
