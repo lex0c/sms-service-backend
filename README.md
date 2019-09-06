@@ -26,6 +26,3 @@ API_URL=http://localhost:4000/api npm test
 
 ### Heroku
 - [https://sms-service-backend.herokuapp.com/api](https://sms-service-backend.herokuapp.com/api)
-
-### Histórico de commits
-- [https://github.com/lleocastro/sms-service](https://github.com/lleocastro/sms-service)
